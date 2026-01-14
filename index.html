@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Control Plus</title>
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #0a66c2;
+      --red: #e53935;
+      --dark: #0f172a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg-light: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      padding: 20px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.logo img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+.logo span {
+  color: var(--dark);
+}
+
+
+    /* ---------- HERO ---------- */
+    .hero {
+      background: linear-gradient(135deg, #0f2a44, #1e4f91, #2563eb);
+      padding: 120px 24px 140px;
+      text-align: center;
+    }
+    .hero::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05), transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.03), transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+    .hero h1 {
+      font-size: 64px;
+      line-height: 1.12;
+      max-width: 1100px;
+      margin: 0 auto 28px;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-title-main {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .hero-title-sub {
+      display: block;
+      margin-top: 6px;
+      color: #b6dcff;
+      font-weight: 600;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 48px;
+      color: #e0ecff;
+      font-size: 18px;
+    }
+
+    /* ---------- CTA ---------- */
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      min-width: 190px;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(229,57,53,0.35);
+    }
+
+    .btn-secondary {
+      border: 2px solid #ffffff;
+      color: #ffffff;
+    }
+
+    .btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    .cta-note {
+      font-size: 14px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .hero small {
+      display: block;
+      margin-top: 32px;
+      color: #dbeafe;
+      font-size: 14px;
+    }
+
+    /* ---------- FEATURES ---------- */
+    .features {
+      padding: 100px 24px;
+      background: var(--bg-light);
+      text-align: center;
+    }
+
+    .feature-heading {
+      font-size: 32px;
+      line-height: 1.35;
+      max-width: 900px;
+      margin: 0 auto 48px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #000;
+    }
+
+    .feature-heading .highlight {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .feature-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    /* ---------- CARD ---------- */
+    .card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  text-align: left;
+  transition: 
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  border: 2px solid transparent;
+}
+.card:hover {
+  background-color: #f0f7ff;          /* soft blue tint */
+  border-color: var(--blue);           /* brand accent */
+  box-shadow: 0 28px 60px rgba(10,102,194,0.25);
+}
+
+    .card p {
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+
+    .card:hover {
+      transform: scale(1.06);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.18);
+    }
+
+    .card h3 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---------- FEATURE LIST ---------- */
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      margin-bottom: 18px;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .feature-list strong {
+      display: block;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .feature-list span {
+      display: block;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      font-size: 14px;
+      color: var(--muted);
+      transition: max-height 0.35s ease, opacity 0.3s ease;
+    }
+
+    /* FIX: expand height on hover */
+    .card:hover .feature-list span {
+      max-height: 120px;
+      opacity: 1;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 40px;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      header {
+        padding: 18px 24px;
+      }
+    }
+ /* ---------- TRUSTED BY ---------- */
+.trusted {
+  padding: 56px 24px;
+  background: #ffffff;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.trusted-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.trusted-logos {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  gap: 40px;
+}
+
+.trusted-logos img {
+  max-height: 36px;
+  width: auto;
+  margin: auto;
+}
+
+/* ---------- TESTIMONIALS ---------- */
+.testimonials {
+  padding: 80px 24px;
+  background: var(--bg-light);
+}
+
+.testimonial-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 40px;
+}
+
+.testimonial {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.testimonial p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: var(--dark);
+}
+
+.testimonial footer strong {
+  display: block;
+  font-weight: 600;
+}
+
+.testimonial footer span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ---------- CAROUSEL ---------- */
+/* ---------- GIF CAROUSEL (FAQ-style) ---------- */
+
+.carousel {
+  background: linear-gradient(135deg, #d0e3ed 0%, #e1ecfb 50%, #f8fafc 100%);
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-viewport {
+  position: relative;
+  max-width: 1100px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+/* Track */
+.carousel-track {
+  width: 100%;
+  min-height: 520px; /* prevents jump */
+  position: relative;
+}
+
+/* Item */
+.carousel-item {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.carousel-item.active {
+  display: flex;
+}
+
+/* Image */
+.carousel-item img,
+.carousel-item video {
+  width: 100%;
+  max-width: 900px;
+  height: 420px;
+  object-fit: contain;
+  background: transparent; /* key */
+}
+
+/* Caption */
+.carousel-caption {
+  position: static;
+  top: 32px;
+  left: 50%;
+  transform: none;
+  text-align: center;
+  max-width: 720px;
+  padding: 16px 24px;
+  z-index: 3;
+}
+.carousel-caption strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.carousel-caption p {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* Nav buttons */
+.carousel-btn {
+  background: #ffffff;
+  border: none;
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #64748b;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.carousel-btn:hover {
+  color: #2563eb;
+  transform: scale(1.1);
+}
+
+.carousel-btn.prev {
+  margin-right: 16px;
+}
+
+.carousel-btn.next {
+  margin-left: 16px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 260px;
+  }
+}
+.carousel {
+  align-items: center;
+}
+
+.carousel-btn.prev {
+  position: absolute;
+  left: 24px;
+}
+
+.carousel-btn.next {
+  position: absolute;
+  right: 24px;
+}
+
+.outcomes {
+  padding: 100px 24px;
+  background: #f8fafc; /* same as page bg for seamless feel */
+  text-align: center;
+}
+
+.outcomes-heading {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 60px;
+  color: var(--dark);
+}
+
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+  gap: 32px;
+  max-width: 900px; /* smaller width for centered feel */
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .outcomes-grid {
+    grid-template-columns: 1fr; /* stack on mobile */
+  }
+}
+
+.outcome-card {
+  background: #ffffff;
+  padding: 36px 24px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.outcome-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 60px rgba(0,0,0,0.08);
+}
+
+.outcome-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--dark);
+}
+
+.outcome-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.outcome-card ul li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.outcome-card ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-weight: 700;
+}
+/* ================= EVALUATE SECTION ================= */
+
+.eval-soft {
+  padding: 96px 24px;
+  background: linear-gradient(180deg, #f7faff 0%, #ffffff 60%);
+}
+
+.eval-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eval-soft h2 {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.eval-lead {
+  font-size: 18px;
+  color: #64748b;
+  margin: 12px auto 64px;
+  max-width: 680px;
+}
+
+/* Layout */
+.eval-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  align-items: stretch; /* keeps cards the same height */
+}
+
+@media (max-width: 768px) {
+  .eval-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Panels */
+.eval-panel {
+  padding: 56px 48px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 32px 72px rgba(15, 23, 42, 0.08);
+  text-align: left;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.eval-panel.primary {
+  background: linear-gradient(180deg, #ffffff, #eef5ff);
+  box-shadow: 0 50px 110px rgba(37, 99, 235, 0.18);
+}
+
+/* Hover — SIMPLE and CONFIDENT */
+.eval-panel:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 70px 140px rgba(15, 23, 42, 0.16);
+}
+
+/* Content */
+.eval-panel h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.eval-price {
+  display: block;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.eval-meta {
+  color: #64748b;
+  margin: 12px 0 36px;
+}
+
+/* Buttons */
+.eval-cta {
+  display: inline-block;
+  padding: 14px 34px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.eval-cta.subtle {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.eval-cta.strong {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.eval-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+}
+.eval-inner-center {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical centering of content */
+  align-items: center;       /* horizontal centering */
+  text-align: center;
+}
+.eval-inner-center.left {
+  align-items: flex-start;   /* left-align content */
+  text-align: left;
+}
+
+/* ---------- GLOBAL ---------- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- FAQ SECTION ---------- */
+
+
+.faq-section {
+  padding: 88px 0;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.faq-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.faq-subtext {
+  font-size: 16px;
+  color: #64748b;
+  margin-bottom: 48px;
+}
+
+/* Carousel wrapper */
+.faq-carousel {
+  max-width: 760px;
+  margin: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Track */
+.faq-track {
+  width: 100%;
+  min-height: 220px; /* 🔑 prevents layout jump */
+  position: relative;
+}
+
+/* Card */
+.faq-item {
+  position: relative;
+  inset: 0;
+  opacity: 1;
+  pointer-events: auto;
+  background: #ffffff;
+  padding: 40px 44px;
+  border-radius: 22px;
+  text-align: left;
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.06);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: translateY(6px);
+  display:none;
+}
+
+.faq-item.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  display: block;
+}
+
+/* Content */
+.faq-item h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.faq-item p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #475569;
+}
+
+/* Navigation */
+.faq-nav {
+  border: none;
+  background: #ffffff;
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #64748b;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.faq-nav:hover {
+  color: #2563eb;
+  transform: scale(1.1);
+}
+
+.faq-nav.prev { margin-right: 16px; }
+.faq-nav.next { margin-left: 16px; }
+
+/* Mobile */
+@media (max-width: 640px) {
+  .faq-item {
+    padding: 32px;
+  }
+
+  .faq-section h2 {
+    font-size: 28px;
+  }
+}
+.feature-list a,
+.feature-list a:visited {
+  color: inherit !important;   /* force same color as text */
+  text-decoration: none;
+}
+
+.feature-list a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.eval-price small {
+  font-size: 22px;
+  font-weight: 500;
+  color: #64748b;
+  margin-left: 6px;
+  letter-spacing: 0;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+  <img src="images/Application Control Plus_with ME_Black (1).png" alt="Application Control Plus logo">
+</div>
+
+  <nav>
+    <a href="#">Overview</a>
+    <a href="#">Features</a>
+    <a href="#">Demo</a>
+    <a href="#">Documents</a>
+    <a href="#">Get Quote</a>
+    <a href="#">Support</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>
+    <span class="hero-title-main">Enforce application control and least privilege</span>
+    <span class="hero-title-sub">without disrupting daily work</span>
+  </h1>
+
+  <p>
+    Start in audit mode. Enforce with confidence. Control applications and grant
+    just-in-time access without slowing users down.
+  </p>
+
+  <div class="hero-buttons">
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">Download</a>
+      <span class="cta-note">On-premises</span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">Sign up</a>
+      <span class="cta-note">Cloud via Endpoint Central</span>
+    </div>
+  </div>
+
+  <small>30-day free trial · No credit card required · Free forever for up to 25 devices</small>
+</section>
+
+<section class="trusted">
+  <p class="trusted-label">Trusted by leading brands worldwide</p>
+
+  <div class="trusted-logos">
+    <img src="images/metropole-logo.png" alt="metropole-logo">
+    <img src="images/meshed-groups-logo.png" alt="meshed-groups-logo">
+    <img src="images/granicus-logo.png" alt="granicus-logo">
+    <img src="images/clear-dynamics.png" alt="clear-dynamics">
+    <img src="images/boing-logo.png" alt="boeing-logo">
+    <img src="images/memphis-logo.png" alt="memphis-logo">
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="testimonial-grid">
+
+    <blockquote class="testimonial">
+      <p>
+        “We started in audit mode and were able to enforce application control
+        without disrupting our users. The transition was smooth and predictable.”
+      </p>
+      <footer>
+        <strong>IT Security Lead</strong>
+        <span>Global Manufacturing Company</span>
+      </footer>
+    </blockquote>
+
+    <blockquote class="testimonial">
+      <p>
+        “Removing local admin rights used to break workflows. With controlled
+        elevation, our teams stay productive while security stays intact.”
+      </p>
+      <footer>
+        <strong>Endpoint Management Manager</strong>
+        <span>Enterprise SaaS Company</span>
+      </footer>
+    </blockquote>
+
+  </div>
+</section>
+
+
+<section class="features">
+  <h2 class="feature-heading">
+    <span class="highlight">Application Control</span> limits what runs.
+    <span class="highlight">Endpoint Privilege Management</span> limits what runs with privilege.
+  </h2>
+
+  <div class="feature-grid">
+    <div class="card">
+      <h3>Application Control</h3>
+      <p>Stop unauthorized software without disrupting legitimate workflows.</p>
+      <ul class="feature-list">
+        <li>
+          <strong><a href="https://www.manageengine.com/application-control/help/configure-app-groups.html">Allowlist and blocklist apps</a></strong>
+          <span>Create rules to allow trusted applications and block risky or unapproved software.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/application-control/help/unmanaged-applications.html">Audit unmanaged applications and block events</strong></a>
+          <span>See what would be blocked before enforcement. Track unmanaged executions and block attempts.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/application-control/help/just-in-time.html">Just-in-time application access</a></strong>
+          <span>Temporarily allow specific apps when needed and revoke access automatically.</span>
+        </li>
+      </ul>
+    </div>
+
+  <div class="card">
+  <h3>Endpoint Privilege Management</h3>
+  <p>Reduce standing privilege while enabling users to complete tasks through controlled elevation.</p>
+  <ul class="feature-list">
+    <li>
+      <strong><a href="https://www.manageengine.com/application-control/help/remove-admin-rights.html">Remove admin rights</a></strong>
+      <span>Eliminate standing local admin access to reduce attack surface.</span>
+    </li>
+    <li>
+      <strong><a href="https://www.manageengine.com/application-control/help/epm-policy-creation.html">Passwordless, app-specific elevation</a></strong>
+      <span>Elevate only the app or task, without sharing admin passwords.</span>
+    </li>
+    <li>
+      <strong><a href="https://www.manageengine.com/application-control/help/epm-jit-access.html">Just-in-time elevation access</a></strong>
+      <span>Grant time-bound elevation and auto-revoke based on policy.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</section>
+<section class="carousel">
+  <button class="carousel-btn prev">&#10094;</button>
+
+  <div class="carousel-viewport">
+    <div class="carousel-track">
+
+      <div class="carousel-item active">
+        <div class="carousel-caption">
+          <strong>Audit Unmanaged Applications</strong>
+          <p>Detect unmanaged applications and choose whether to allow or block them, all from a centralized dashboard.</p>
+        </div>
+        <video autoplay muted loop playsinline>
+          <source src="videos/unmanaged.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="carousel-item">
+        <div class="carousel-caption">
+          <strong>Enforce Just-in-Time Access</strong>
+          <p>Reduce security risks by granting temporary access only to trusted applications and approved vendors when needed.</p>
+        </div>
+        <video autoplay muted loop playsinline>
+          <source src="videos/jit.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="carousel-item">
+        <div class="carousel-caption">
+          <strong>Empower Users with Temporary Privileges</strong>
+          <p>Allow users in custom groups to run specific applications with elevated privileges securely, without giving permanent admin rights.</p>
+        </div>
+        <img src="images/run-as-me.png" alt="run-as-manageengine">
+      </div>
+
+      <div class="carousel-item">
+        <div class="carousel-caption">
+          <strong>Identify and Remove Unnecessary Admin Rights</strong>
+          <p>Detect systems with local admin accounts and remove excess privileges</p>
+        </div>
+        <video autoplay muted loop playsinline>
+          <source src="videos/adminrights.mp4" type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </div>
+
+  <button class="carousel-btn next">&#10095;</button>
+</section>
+
+<section class="outcomes">
+  <div class="container">
+    <h2 class="outcomes-heading">Outcomes That Matter</h2>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <h3>Stronger threat defense</h3>
+        <ul>
+          <li>Control which applications are allowed to run and block unapproved software</li>
+          <li>Remove unnecessary admin privileges to reduce unauthorized access and lateral movement</li>
+        </ul>
+      </div>
+
+      <div class="outcome-card">
+        <h3>Regulatory compliance</h3>
+        <ul>
+          <li>Enforce policy-based application privileges</li>
+          <li>Generate audit-ready compliance reports</li>
+        </ul>
+      </div>
+
+      <div class="outcome-card">
+        <h3>Enhanced user productivity</h3>
+        <ul>
+          <li>Enable users to complete tasks without waiting on admin access</li>
+          <li>Deliver just-in-time application access and elevation</li>
+        </ul>
+      </div>
+
+      <div class="outcome-card">
+        <h3>Increased flexibility</h3>
+        <ul>
+          <li>Deliver just-in-time application access and elevation</li>
+          <li>Validate policies in audit mode before enforcement</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="eval-soft">
+  <div class="eval-wrap">
+    <h2>Ready to evaluate safely?</h2>
+    <p class="eval-lead">
+      Start in audit mode and gain visibility without risk.
+      Choose what fits your scale.
+    </p>
+
+    <div class="eval-layout">
+      <!-- Free -->
+      <div class="eval-panel">
+  <div class="eval-inner-center left">
+    <h3>Free Edition</h3>
+    <span class="eval-price">$0</span>
+    <p class="eval-meta">Up to 25 devices</p>
+
+    <a href="#" class="eval-cta subtle">Get started</a>
+  </div>
+</div>
+
+
+      <!-- Trial -->
+      <!-- Professional Edition -->
+<div class="eval-panel primary">
+  <h3>Professional Edition</h3>
+  <span class="eval-price">
+  $10 <small>per device per year</small>
+</span>
+  <p class="eval-meta">As the number of devices increases, the price per device decreases</p>
+
+  <a href="https://www.manageengine.com/application-control/request-demo.html" class="eval-cta strong">Start free trial</a>
+  <small style="display:block; margin-top:8px; color:#64748b; font-size:12px;">
+    For more pricing details, visit <a href="https://store.manageengine.com/application-control/" style="color:var(--blue); text-decoration:underline;">ManageEngine Store</a>
+  </small>
+</div>
+    </div>
+  </div>
+  <p style="text-align:center; font-size:12px; color:#64748b; margin-top:16px;">
+  For complete endpoint management and security, <a href="https://www.manageengine.com/products/desktop-central/" style="color:var(--blue); text-decoration:underline;">ManageEngineEndpoint Central</a> is the recommended solution.
+</p>
+
+</section>
+<section class="faq-section">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <p class="faq-subtext">
+      Answers to common evaluation questions
+    </p>
+
+    <div class="faq-carousel">
+      <button class="faq-nav prev">‹</button>
+
+      <div class="faq-track">
+
+        <div class="faq-item active">
+          <h3>Can I get a demo of ManageEngine Application Control Plus?</h3>
+          <p>
+            Yes, you can request a <a href="https://www.manageengine.com/application-control/request-demo.html">personalized demo</a> to see how application control and least privilege can be enforced in your environment.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Does ManageEngine Application Control Plus have a free plan?</h3>
+          <p>
+            Yes. Application Control Plus offers a lifetime Free Edition that supports up to 25 devices.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is support available for the Free Edition?</h3>
+          <p>
+            Yes, ManageEngine Application Control Plus provides technical support for the Free Edition, in addition to access to product documentation and knowledge base resources, to help you deploy and manage policies effectively.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is Application Control Plus the right choice if I’m looking for broader endpoint management capabilities?</h3>
+          <p>
+            Application Control Plus is purpose-built for application control and endpoint privilege management.
+If your requirement includes capabilities such as patch management, vulnerability assessment, device control, or broader endpoint administration, <a href="https://www.manageengine.com/products/desktop-central/">ManageEngine Endpoint Central</a> would be the more suitable choice, as it offers a comprehensive endpoint management platform.
+          </p>
+        </div>
+
+      </div>
+
+      <button class="faq-nav next">›</button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<footer>
+  © 2026 Application Control Plus. All rights reserved.
+</footer>
+<script>
+/* ================= GIF CAROUSEL (FAQ-style) ================= */
+
+const carousel = document.querySelector('.carousel');
+const items = carousel.querySelectorAll('.carousel-item');
+const prevBtn = carousel.querySelector('.carousel-btn.prev');
+const nextBtn = carousel.querySelector('.carousel-btn.next');
+
+let currentIndex = 0;
+
+function showSlide(index) {
+  items.forEach(item => item.classList.remove('active'));
+  items[index].classList.add('active');
+}
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + items.length) % items.length;
+  showSlide(currentIndex);
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % items.length;
+  showSlide(currentIndex);
+});
+
+// Init
+showSlide(currentIndex);
+
+/* ================= FAQ CAROUSEL ================= */
+
+const faqItems = document.querySelectorAll('.faq-item');
+const faqPrev = document.querySelector('.faq-nav.prev');
+const faqNext = document.querySelector('.faq-nav.next');
+
+let faqIndex = 0;
+
+// Initialize
+faqItems[faqIndex].classList.add('active');
+
+function showFaq(index) {
+  faqItems.forEach(item => item.classList.remove('active'));
+  faqItems[index].classList.add('active');
+}
+
+faqNext.addEventListener('click', () => {
+  faqIndex = (faqIndex + 1) % faqItems.length;
+  showFaq(faqIndex);
+});
+
+faqPrev.addEventListener('click', () => {
+  faqIndex = (faqIndex - 1 + faqItems.length) % faqItems.length;
+  showFaq(faqIndex);
+});
+</script>
+
+
+
+
+</body>
+
+</html>
