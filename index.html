@@ -20,11 +20,7 @@
       --bg-light: #f8fafc;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -32,6 +28,9 @@
       background: #ffffff;
       line-height: 1.6;
     }
+
+    /* ---------- GLOBAL ---------- */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
     /* ---------- HEADER ---------- */
     header {
@@ -48,54 +47,45 @@
       color: var(--dark);
       font-weight: 500;
     }
-    .logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
 
-.logo img {
-  height: 36px;
-  width: auto;
-  display: block;
-}
-
-.logo span {
-  color: var(--dark);
-}
-
+    .logo { display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+    .logo img { height: 36px; width: auto; display: block; }
+    .logo span { color: var(--dark); }
 
     /* ---------- HERO ---------- */
     .hero {
+      position: relative;               /* FIX: anchor ::before/::after */
+      overflow: hidden;                 /* helps keep glows contained */
       background: linear-gradient(135deg, #0f2a44, #1e4f91, #2563eb);
       padding: 120px 24px 140px;
       text-align: center;
     }
+
     .hero::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  left: -50px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255,255,255,0.05), transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: -50px;
-  right: -50px;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255,255,255,0.03), transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-}
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05), transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.03), transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; } /* FIX: ensure content above glows */
 
     .hero h1 {
       font-size: 64px;
@@ -105,17 +95,8 @@
       letter-spacing: -0.035em;
     }
 
-    .hero-title-main {
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .hero-title-sub {
-      display: block;
-      margin-top: 6px;
-      color: #b6dcff;
-      font-weight: 600;
-    }
+    .hero-title-main { color: #ffffff; font-weight: 700; }
+    .hero-title-sub { display: block; margin-top: 6px; color: #b6dcff; font-weight: 600; }
 
     .hero p {
       max-width: 720px;
@@ -125,19 +106,8 @@
     }
 
     /* ---------- CTA ---------- */
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
+    .hero-buttons { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .hero-cta { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 
     .btn {
       min-width: 190px;
@@ -147,43 +117,192 @@
       border-radius: 10px;
       text-decoration: none;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .btn-primary {
-      background: var(--red);
-      color: #ffffff;
-      box-shadow: 0 10px 24px rgba(229,57,53,0.35);
-    }
-
-    .btn-secondary {
-      border: 2px solid #ffffff;
-      color: #ffffff;
-    }
-
-    .btn:hover {
-      transform: scale(1.06);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-    }
-
-    .cta-note {
-      font-size: 14px;
-      font-weight: 500;
-      color: #ffffff;
-    }
-
-    .hero small {
-      display: block;
-      margin-top: 32px;
-      color: #dbeafe;
-      font-size: 14px;
-    }
-
-    /* ---------- FEATURES ---------- */
-    .features {
-      padding: 100px 24px;
-      background: var(--bg-light);
+      display: inline-block;
       text-align: center;
     }
+
+    .btn-primary { background: var(--red); color: #ffffff; box-shadow: 0 10px 24px rgba(229,57,53,0.35); }
+    .btn-secondary { border: 2px solid #ffffff; color: #ffffff; }
+
+    .btn:hover { transform: scale(1.06); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+
+    .cta-note { font-size: 14px; font-weight: 500; color: #ffffff; }
+
+    .hero small { display: block; margin-top: 32px; color: #dbeafe; font-size: 14px; }
+
+    /* ---------- TRUST + CREDIBILITY (COMBINED) ---------- */
+.trust-proof {
+  position: relative;
+  padding: 96px 0 88px;
+
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f9fbff 55%, #ffffff 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+
+/* World map watermark */
+.trust-proof::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("images/worldmap.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  opacity: 0.27;
+  filter: grayscale(100%) contrast(90%);
+  pointer-events: none;
+}
+.trust-proof::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(ellipse at center,
+    rgba(255,255,255,0.0) 35%,
+    rgba(255,255,255,0.75) 85%
+  );
+  pointer-events:none;
+}
+
+
+.trust-proof > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.trust-head {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.trust-kicker {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+
+.trust-title {
+  margin-top: 16px;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* Logos */
+.trust-logos {
+  max-width: 1100px;
+  margin: 40px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  gap: 40px;
+}
+
+.trust-logos img {
+  max-height: 36px;
+  margin: auto;
+  opacity: 0.85;
+}
+
+
+
+/* Divider */
+.trust-spacer {
+  height: 56px;
+}
+
+
+/* Metrics */
+.trust-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  text-align: center;
+}
+
+.metric {
+  padding: 16px 12px;
+}
+
+.metric strong {
+  display: inline-block;
+  font-weight: 900;
+  font-size: clamp(34px, 3.6vw, 44px);
+  letter-spacing: -0.05em;
+
+  background: linear-gradient(180deg, #0b1220, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              text-shadow 0.32s ease;
+}
+
+.metric span {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Hover enlarge (controlled) */
+.metric:hover strong {
+  transform: scale(1.26);
+  text-shadow: 0 18px 36px rgba(37,99,235,0.35);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .trust-logos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .trust-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .trust-logos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trust-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-proof::before {
+    display: none; /* hide map on mobile */
+  }
+}
+
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testimonials { padding: 80px 24px; background: var(--bg-light); }
+
+    .testimonial-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 40px;
+    }
+
+    .testimonial { background: #ffffff; padding: 36px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    .testimonial p { font-size: 18px; line-height: 1.6; margin-bottom: 24px; color: var(--dark); }
+    .testimonial footer strong { display: block; font-weight: 600; }
+    .testimonial footer span { font-size: 14px; color: var(--muted); }
+
+    /* ---------- FEATURES ---------- */
+    .features { padding: 100px 24px; background: var(--bg-light); text-align: center; }
 
     .feature-heading {
       font-size: 32px;
@@ -195,10 +314,7 @@
       color: #000;
     }
 
-    .feature-heading .highlight {
-      color: var(--blue);
-      font-weight: 700;
-    }
+    .feature-heading .highlight { color: var(--blue); font-weight: 700; }
 
     .feature-grid {
       max-width: 1100px;
@@ -208,68 +324,29 @@
       gap: 32px;
     }
 
-    /* ---------- CARD ---------- */
     .card {
-  background: #ffffff;
-  padding: 36px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  text-align: left;
-  transition: 
-    box-shadow 0.3s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease;
-  border: 2px solid transparent;
-}
-.card:hover {
-  background-color: #f0f7ff;          /* soft blue tint */
-  border-color: var(--blue);           /* brand accent */
-  box-shadow: 0 28px 60px rgba(10,102,194,0.25);
-}
-
-    .card p {
-  margin-bottom: 24px;
-  color: var(--muted);
-  font-size: 16px;
-}
-
-
-    .card:hover {
-      transform: scale(1.06);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.18);
+      background: #ffffff;
+      padding: 36px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      text-align: left;
+      transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      border: 2px solid transparent;
     }
 
-    .card h3 {
-      margin-bottom: 20px;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
+    .card:hover { background-color: #f0f7ff; border-color: var(--blue); box-shadow: 0 28px 60px rgba(10,102,194,0.25); transform: scale(1.02); }
 
-    /* ---------- FEATURE LIST ---------- */
-    .feature-list {
-      list-style: none;
-    }
+    .card p { margin-bottom: 24px; color: var(--muted); font-size: 16px; }
 
-    .feature-list li {
-      margin-bottom: 18px;
-      position: relative;
-      padding-left: 24px;
-    }
+    .card h3 { margin-bottom: 20px; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
 
-    .feature-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--blue);
-      font-weight: 700;
-    }
+    .feature-list { list-style: none; }
 
-    .feature-list strong {
-      display: block;
-      font-weight: 600;
-      color: var(--dark);
-    }
+    .feature-list li { margin-bottom: 18px; position: relative; padding-left: 24px; }
+
+    .feature-list li::before { content: "✓"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
+    .feature-list strong { display: block; font-weight: 600; color: var(--dark); }
 
     .feature-list span {
       display: block;
@@ -281,10 +358,256 @@
       transition: max-height 0.35s ease, opacity 0.3s ease;
     }
 
-    /* FIX: expand height on hover */
-    .card:hover .feature-list span {
-      max-height: 120px;
+    .card:hover .feature-list span { max-height: 120px; opacity: 1; }
+
+    .feature-list a, .feature-list a:visited { color: inherit !important; text-decoration: none; }
+    .feature-list a:hover { color: var(--blue); text-decoration: underline; cursor: pointer; }
+
+    /* ---------- CAROUSEL ---------- */
+    .carousel {
+      background: radial-gradient(1200px 500px at 20% 10%, rgba(37,99,235,0.14), transparent 60%),
+                  radial-gradient(900px 420px at 80% 20%, rgba(10,102,194,0.12), transparent 62%),
+                  linear-gradient(135deg, #d0e3ed 0%, #eaf2ff 50%, #f8fafc 100%);
+      padding: 92px 0 78px;
+    }
+
+    .carousel-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    .carousel-viewport { max-width: 1100px; margin: 0 auto; position: relative; }
+
+    .carousel-track { width: 100%; position: relative; min-height: 520px; } /* prevents jump */
+
+    .carousel-item { display: none; flex-direction: column; align-items: center; text-align: center; }
+    .carousel-item.active { display: flex; animation: fadeUp 280ms ease both; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .carousel-caption { max-width: 820px; margin-bottom: 18px; }
+
+    .carousel-caption strong {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: #0b1220;
+    }
+
+    .carousel-caption p { margin-top: 10px; font-size: 16px; color: #475569; }
+
+    .carousel-item img,
+    .carousel-item video {
+      width: 100%;
+      max-width: 960px;
+      height: 420px;
+      object-fit: contain;
+      background: transparent;
+      filter: drop-shadow(0 18px 34px rgba(15,23,42,0.18));
+      border-radius: 14px;
+      display: block;
+      margin: 0 auto 28px; /* consistent gap to nav pills */
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 52%;
+      transform: translateY(-50%);
+      background: #ffffff;
+      border: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      font-size: 22px;
+      color: #475569;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 5;
+    }
+
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+
+    .carousel-btn:hover { transform: translateY(-50%) scale(1.12); box-shadow: 0 24px 60px rgba(15,23,42,0.22); }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .carousel-dot {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(148,163,184,0.55);
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      cursor: pointer;
+    }
+
+    .carousel-dot:hover { transform: translateY(-1px); background: rgba(255,255,255,0.92); border-color: rgba(37,99,235,0.55); }
+
+    .carousel-dot.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 14px 34px rgba(37,99,235,0.28);
+    }
+
+    .carousel-dot .pill { width: 9px; height: 9px; border-radius: 999px; background: rgba(100,116,139,0.55); display: inline-block; margin-right: 8px; vertical-align: middle; }
+    .carousel-dot.active .pill { background: rgba(255,255,255,0.95); }
+
+    @media (max-width: 900px) {
+      .carousel-btn { display: none; }
+      .carousel-item img, .carousel-item video { height: 300px; }
+      .carousel-track { min-height: 390px; }
+    }
+
+    .carousel-btn:focus, .carousel-dot:focus { outline: 3px solid rgba(37,99,235,0.35); outline-offset: 3px; }
+
+    /* ---------- OUTCOMES ---------- */
+    .outcomes { padding: 100px 24px; background: #f8fafc; text-align: center; }
+    .outcomes-heading { font-size: 36px; font-weight: 700; margin-bottom: 60px; color: var(--dark); }
+
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+  .trust-logos { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+
+
+    .outcome-card {
+      background: #ffffff;
+      padding: 36px 24px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: left;
+    }
+
+    .outcome-card:hover { transform: translateY(-4px); box-shadow: 0 28px 60px rgba(0,0,0,0.08); }
+    .outcome-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 20px; color: var(--dark); }
+    .outcome-card ul { list-style: none; padding: 0; }
+    .outcome-card ul li { position: relative; padding-left: 24px; margin-bottom: 12px; color: var(--muted); font-size: 16px; }
+    .outcome-card ul li::before { content: "✔"; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
+    /* ---------- EVALUATE SECTION ---------- */
+    .eval-soft { padding: 96px 24px; background: linear-gradient(180deg, #f7faff 0%, #ffffff 60%); }
+
+    .eval-wrap { max-width: 1100px; margin: 0 auto; text-align: center; }
+
+    .eval-soft h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+
+    .eval-lead { font-size: 18px; color: #64748b; margin: 12px auto 64px; max-width: 680px; }
+
+    .eval-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; align-items: stretch; }
+
+    .eval-panel {
+      padding: 56px 48px;
+      border-radius: 28px;
+      background: #ffffff;
+      box-shadow: 0 32px 72px rgba(15, 23, 42, 0.08);
+      text-align: left;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .eval-panel.primary { background: linear-gradient(180deg, #ffffff, #eef5ff); box-shadow: 0 50px 110px rgba(37, 99, 235, 0.18); }
+
+    .eval-panel:hover { transform: translateY(-8px); box-shadow: 0 70px 140px rgba(15, 23, 42, 0.16); }
+
+    .eval-panel h3 { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
+
+    .eval-price { display: block; font-size: 42px; font-weight: 800; letter-spacing: -0.02em; }
+    .eval-price small { font-size: 22px; font-weight: 500; color: #64748b; margin-left: 6px; letter-spacing: 0; }
+
+    .eval-meta { color: #64748b; margin: 12px 0 36px; }
+
+    .eval-cta {
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .eval-cta.subtle { background: #f1f5f9; color: #0f172a; }
+    .eval-cta.strong { background: #2563eb; color: #ffffff; }
+
+    .eval-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25); }
+
+    .eval-inner-center { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .eval-inner-center.left { align-items: flex-start; text-align: left; }
+
+    /* ---------- FAQ SECTION ---------- */
+    .faq-section { padding: 88px 0; background: #f8fafc; text-align: center; }
+
+    .faq-section h2 { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+    .faq-subtext { font-size: 16px; color: #64748b; margin-bottom: 48px; }
+
+    .faq-carousel { max-width: 760px; margin: auto; position: relative; display: flex; align-items: center; }
+
+    .faq-track { width: 100%; min-height: 220px; position: relative; }
+
+    .faq-item {
+      position: relative;
+      inset: 0;
       opacity: 1;
+      pointer-events: auto;
+      background: #ffffff;
+      padding: 40px 44px;
+      border-radius: 22px;
+      text-align: left;
+      box-shadow: 0 20px 44px rgba(15, 23, 42, 0.06);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      transform: translateY(6px);
+      display: none;
+    }
+
+    .faq-item.active { opacity: 1; pointer-events: auto; transform: translateY(0); display: block; }
+
+    .faq-item h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+    .faq-item p { font-size: 16px; line-height: 1.6; color: #475569; }
+
+    .faq-nav {
+      border: none;
+      background: #ffffff;
+      font-size: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: #64748b;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+
+    .faq-nav:hover { color: #2563eb; transform: scale(1.1); }
+    .faq-nav.prev { margin-right: 16px; }
+    .faq-nav.next { margin-left: 16px; }
+
+    @media (max-width: 640px) {
+      .faq-item { padding: 32px; }
+      .faq-section h2 { font-size: 28px; }
     }
 
     /* ---------- FOOTER ---------- */
@@ -294,535 +617,51 @@
       color: var(--muted);
       border-top: 1px solid var(--border);
       font-size: 14px;
+      background: #ffffff;
     }
 
-    /* ---------- RESPONSIVE ---------- */
+    /* ---------- RESPONSIVE (HEADER/HERO) ---------- */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 42px;
-      }
-
-      header {
-        padding: 18px 24px;
-      }
+      .hero h1 { font-size: 42px; }
+      header { padding: 18px 24px; }
+      .trusted-logos { grid-template-columns: repeat(3, 1fr); gap: 24px; }
     }
- /* ---------- TRUSTED BY ---------- */
-.trusted {
-  padding: 56px 24px;
+
+    /* Logo tiles (uniform white rectangles) */
+.logo-tile{
+  height: 72px;                 /* same height for all */
+  padding: 12px 18px;
+  border-radius: 14px;
+
   background: #ffffff;
-  text-align: center;
-  border-bottom: 1px solid var(--border);
-}
+  
+  box-shadow: 0 6px 18px rgba(15,23,42,0.05);
 
-.trusted-label {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 32px;
-}
-
-.trusted-logos {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  align-items: center;
-  gap: 40px;
-}
-
-.trusted-logos img {
-  max-height: 36px;
-  width: auto;
-  margin: auto;
-}
-
-/* ---------- TESTIMONIALS ---------- */
-.testimonials {
-  padding: 80px 24px;
-  background: var(--bg-light);
-}
-
-.testimonial-grid {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 40px;
-}
-
-.testimonial {
-  background: #ffffff;
-  padding: 36px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-}
-
-.testimonial p {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 24px;
-  color: var(--dark);
-}
-
-.testimonial footer strong {
-  display: block;
-  font-weight: 600;
-}
-
-.testimonial footer span {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-/* ---------- CAROUSEL ---------- */
-/* ---------- GIF CAROUSEL (FAQ-style) ---------- */
-
-.carousel {
-  background: linear-gradient(135deg, #d0e3ed 0%, #e1ecfb 50%, #f8fafc 100%);
-  padding: 80px 0;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.carousel-viewport {
-  position: relative;
-  max-width: 1100px;
-  width: 90%;
-  display: flex;
-  align-items: center;
-}
-
-/* Track */
-.carousel-track {
-  width: 100%;
-  min-height: 520px; /* prevents jump */
-  position: relative;
-}
-
-/* Item */
-.carousel-item {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.carousel-item.active {
-  display: flex;
-}
-
-/* Image */
-.carousel-item img,
-.carousel-item video {
-  width: 100%;
-  max-width: 900px;
-  height: 420px;
+.logo-tile img{
+  max-height: 32px;
+  max-width: 100%;
   object-fit: contain;
-  background: transparent; /* key */
-}
-
-/* Caption */
-.carousel-caption {
-  position: static;
-  top: 32px;
-  left: 50%;
-  transform: none;
-  text-align: center;
-  max-width: 720px;
-  padding: 16px 24px;
-  z-index: 3;
-}
-.carousel-caption strong {
   display: block;
-  font-size: 28px;
-  font-weight: 700;
-  color: #0f172a;
-}
 
-.carousel-caption p {
-  color: var(--muted);
-  font-size: 16px;
-}
-
-/* Nav buttons */
-.carousel-btn {
-  background: #ffffff;
-  border: none;
-  font-size: 24px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  color: #64748b;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
-  transition: transform 0.25s ease, color 0.25s ease;
-}
-
-.carousel-btn:hover {
-  color: #2563eb;
-  transform: scale(1.1);
-}
-
-.carousel-btn.prev {
-  margin-right: 16px;
-}
-
-.carousel-btn.next {
-  margin-left: 16px;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .carousel-item img {
-    height: 260px;
-  }
-}
-.carousel {
-  align-items: center;
-}
-
-.carousel-btn.prev {
-  position: absolute;
-  left: 24px;
-}
-
-.carousel-btn.next {
-  position: absolute;
-  right: 24px;
-}
-
-.outcomes {
-  padding: 100px 24px;
-  background: #f8fafc; /* same as page bg for seamless feel */
-  text-align: center;
-}
-
-.outcomes-heading {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 60px;
-  color: var(--dark);
-}
-
-.outcomes-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
-  gap: 32px;
-  max-width: 900px; /* smaller width for centered feel */
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .outcomes-grid {
-    grid-template-columns: 1fr; /* stack on mobile */
-  }
-}
-
-.outcome-card {
-  background: #ffffff;
-  padding: 36px 24px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left;
-}
-
-.outcome-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 28px 60px rgba(0,0,0,0.08);
-}
-
-.outcome-card h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: var(--dark);
-}
-
-.outcome-card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.outcome-card ul li {
-  position: relative;
-  padding-left: 24px;
-  margin-bottom: 12px;
-  color: var(--muted);
-  font-size: 16px;
-}
-
-.outcome-card ul li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: var(--blue);
-  font-weight: 700;
-}
-/* ================= EVALUATE SECTION ================= */
-
-.eval-soft {
-  padding: 96px 24px;
-  background: linear-gradient(180deg, #f7faff 0%, #ffffff 60%);
-}
-
-.eval-wrap {
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.eval-soft h2 {
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-}
-
-.eval-lead {
-  font-size: 18px;
-  color: #64748b;
-  margin: 12px auto 64px;
-  max-width: 680px;
-}
-
-/* Layout */
-.eval-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-  align-items: stretch; /* keeps cards the same height */
-}
-
-@media (max-width: 768px) {
-  .eval-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Panels */
-.eval-panel {
-  padding: 56px 48px;
-  border-radius: 28px;
-  background: #ffffff;
-  box-shadow: 0 32px 72px rgba(15, 23, 42, 0.08);
-  text-align: left;
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.eval-panel.primary {
-  background: linear-gradient(180deg, #ffffff, #eef5ff);
-  box-shadow: 0 50px 110px rgba(37, 99, 235, 0.18);
-}
-
-/* Hover — SIMPLE and CONFIDENT */
-.eval-panel:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 70px 140px rgba(15, 23, 42, 0.16);
-}
-
-/* Content */
-.eval-panel h3 {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.eval-price {
-  display: block;
-  font-size: 42px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.eval-meta {
-  color: #64748b;
-  margin: 12px 0 36px;
-}
-
-/* Buttons */
-.eval-cta {
-  display: inline-block;
-  padding: 14px 34px;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.eval-cta.subtle {
-  background: #f1f5f9;
-  color: #0f172a;
-}
-
-.eval-cta.strong {
-  background: #2563eb;
-  color: #ffffff;
-}
-
-.eval-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
-}
-.eval-inner-center {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;   /* vertical centering of content */
-  align-items: center;       /* horizontal centering */
-  text-align: center;
-}
-.eval-inner-center.left {
-  align-items: flex-start;   /* left-align content */
-  text-align: left;
-}
-
-/* ---------- GLOBAL ---------- */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-/* ---------- FAQ SECTION ---------- */
-
-
-.faq-section {
-  padding: 88px 0;
-  background: #f8fafc;
-  text-align: center;
-}
-
-.faq-section h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.faq-subtext {
-  font-size: 16px;
-  color: #64748b;
-  margin-bottom: 48px;
-}
-
-/* Carousel wrapper */
-.faq-carousel {
-  max-width: 760px;
-  margin: auto;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-/* Track */
-.faq-track {
-  width: 100%;
-  min-height: 220px; /* 🔑 prevents layout jump */
-  position: relative;
-}
-
-/* Card */
-.faq-item {
-  position: relative;
-  inset: 0;
-  opacity: 1;
-  pointer-events: auto;
-  background: #ffffff;
-  padding: 40px 44px;
-  border-radius: 22px;
-  text-align: left;
-  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.06);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  transform: translateY(6px);
-  display:none;
-}
-
-.faq-item.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-  display: block;
-}
-
-/* Content */
-.faq-item h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.faq-item p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #475569;
-}
-
-/* Navigation */
-.faq-nav {
-  border: none;
-  background: #ffffff;
-  font-size: 24px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  color: #64748b;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
-  transition: transform 0.25s ease, color 0.25s ease;
-}
-
-.faq-nav:hover {
-  color: #2563eb;
-  transform: scale(1.1);
-}
-
-.faq-nav.prev { margin-right: 16px; }
-.faq-nav.next { margin-left: 16px; }
-
-/* Mobile */
-@media (max-width: 640px) {
-  .faq-item {
-    padding: 32px;
-  }
-
-  .faq-section h2 {
-    font-size: 28px;
-  }
-}
-.feature-list a,
-.feature-list a:visited {
-  color: inherit !important;   /* force same color as text */
-  text-decoration: none;
-}
-
-.feature-list a:hover {
-  color: var(--blue);
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.eval-price small {
-  font-size: 22px;
-  font-weight: 500;
-  color: #64748b;
-  margin-left: 6px;
-  letter-spacing: 0;
+  opacity: 0.9;
+  
 }
 
 
-</style>
+  </style>
 </head>
 
 <body>
 
 <header>
   <div class="logo">
-  <img src="images/Application Control Plus_with ME_Black (1).png" alt="Application Control Plus logo">
-</div>
+    <img src="images/Application Control Plus_with ME_Black (1).png" alt="Application Control Plus logo">
+  </div>
 
   <nav>
     <a href="https://www.manageengine.com/application-control/features.html">Features</a>
@@ -859,22 +698,51 @@
   <small>30-day free trial · No credit card required · Free forever for up to 25 devices</small>
 </section>
 
-<section class="trusted">
-  <p class="trusted-label">Trusted by leading brands worldwide</p>
+<section class="trust-proof" aria-label="Global trust and credibility">
+  <div class="container">
 
-  <div class="trusted-logos">
-    <img src="images/metropole-logo.png" alt="metropole-logo">
-    <img src="images/meshed-groups-logo.png" alt="meshed-groups-logo">
-    <img src="images/granicus-logo.png" alt="granicus-logo">
-    <img src="images/clear-dynamics.png" alt="clear-dynamics">
-    <img src="images/boing-logo.png" alt="boeing-logo">
-    <img src="images/memphis-logo.png" alt="memphis-logo">
+    <div class="trust-head">
+      <p class="trust-kicker">Trusted by leading brands worldwide</p>
+    </div>
+
+  <div class="trust-logos" aria-label="Customer logos">
+    <div class="logo-tile"><img src="images/metropole-logo.png" alt="Metropole"></div>
+    <div class="logo-tile"><img src="images/meshed-groups-logo.png" alt="Meshed Groups"></div>
+    <div class="logo-tile"><img src="images/granicus-logo.png" alt="Granicus"></div>
+    <div class="logo-tile"><img src="images/clear-dynamics.png" alt="Clear Dynamics"></div>
+    <div class="logo-tile"><img src="images/boing-logo.png" alt="Boeing"></div>
+    <div class="logo-tile"><img src="images/memphis-logo.png" alt="Memphis"></div>
+  </div>
+
+
+    <div class="trust-spacer" aria-hidden="true"></div>
+
+    <div class="trust-metrics">
+      <div class="metric">
+        <strong>1M+</strong>
+        <span>endpoints secured</span>
+      </div>
+      <div class="metric">
+        <strong>10+ years</strong>
+        <span>in the industry</span>
+      </div>
+      <div class="metric">
+        <strong>100+</strong>
+        <span>countries served</span>
+      </div>
+      <div class="metric">
+        <strong>2000+</strong>
+        <span>organizations worldwide</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
+
+
 <section class="testimonials">
   <div class="testimonial-grid">
-
     <blockquote class="testimonial">
       <p>
         “We started in audit mode and were able to enforce application control
@@ -896,10 +764,8 @@
         <span>Enterprise SaaS Company</span>
       </footer>
     </blockquote>
-
   </div>
 </section>
-
 
 <section class="features">
   <h2 class="feature-heading">
@@ -912,88 +778,91 @@
       <p>Stop unauthorized software without disrupting legitimate workflows.</p>
       <ul class="feature-list">
         <li>
-          <strong><a href="https://www.manageengine.com/application-control/help/configure-app-groups.html">Allowlist and blocklist apps</a></strong>
+          <strong><a href="https://www.manageengine.com/application-control/application-allowlisting.html">Allowlist </a>and <a href="https://www.manageengine.com/application-control/application-blocklisting.html">blocklist</a> apps</strong>
           <span>Create rules to allow trusted applications and block risky or unapproved software.</span>
         </li>
         <li>
-          <strong><a href="https://www.manageengine.com/application-control/help/unmanaged-applications.html">Audit unmanaged applications and block events</strong></a>
+          <strong><a href="https://www.manageengine.com/application-control/unmanaged-applications.html">Audit unmanaged applications and block events</a></strong>
           <span>See what would be blocked before enforcement. Track unmanaged executions and block attempts.</span>
         </li>
         <li>
-          <strong><a href="https://www.manageengine.com/application-control/help/just-in-time.html">Just-in-time application access</a></strong>
+          <strong><a href="https://www.manageengine.com/application-control/just-in-time-access.html">Just-in-time application access</a></strong>
           <span>Temporarily allow specific apps when needed and revoke access automatically.</span>
         </li>
       </ul>
     </div>
 
-  <div class="card">
-  <h3>Endpoint Privilege Management</h3>
-  <p>Reduce standing privilege while enabling users to complete tasks through controlled elevation.</p>
-  <ul class="feature-list">
-    <li>
-      <strong><a href="https://www.manageengine.com/application-control/help/remove-admin-rights.html">Remove admin rights</a></strong>
-      <span>Eliminate standing local admin access to reduce attack surface.</span>
-    </li>
-    <li>
-      <strong><a href="https://www.manageengine.com/application-control/help/epm-policy-creation.html">Passwordless, app-specific elevation</a></strong>
-      <span>Elevate only the app or task, without sharing admin passwords.</span>
-    </li>
-    <li>
-      <strong><a href="https://www.manageengine.com/application-control/help/epm-jit-access.html">Just-in-time elevation access</a></strong>
-      <span>Grant time-bound elevation and auto-revoke based on policy.</span>
-    </li>
-  </ul>
-</div>
-  </div>
-</section>
-<section class="carousel">
-  <button class="carousel-btn prev">&#10094;</button>
-
-  <div class="carousel-viewport">
-    <div class="carousel-track">
-
-      <div class="carousel-item active">
-        <div class="carousel-caption">
-          <strong>Control Application installed through shadow IT</strong>
-          <p>Detect unauthorized applications and choose whether to allow or block them, all from a centralized dashboard.</p>
-        </div>
-        <video autoplay muted loop playsinline>
-          <source src="videos/unmanaged.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="carousel-item">
-        <div class="carousel-caption">
-          <strong>Enforce Just-in-Time Access</strong>
-          <p>Reduce security risks by granting temporary access only to trusted applications and approved vendors when needed.</p>
-        </div>
-        <video autoplay muted loop playsinline>
-          <source src="videos/jit.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="carousel-item">
-        <div class="carousel-caption">
-          <strong>Empower Users with Temporary Privileges</strong>
-          <p>Allow users in custom groups to run specific applications with elevated privileges securely, without giving permanent admin rights.</p>
-        </div>
-        <img src="images/run-as-me.png" alt="run-as-manageengine">
-      </div>
-
-      <div class="carousel-item">
-        <div class="carousel-caption">
-          <strong>Identify and Remove Unnecessary Admin Rights</strong>
-          <p>Detect systems with local admin accounts and remove excess privileges</p>
-        </div>
-        <video autoplay muted loop playsinline>
-          <source src="videos/adminrights.mp4" type="video/mp4">
-        </video>
-      </div>
-
+    <div class="card">
+      <h3>Endpoint Privilege Management</h3>
+      <p>Reduce standing privilege while enabling users to complete tasks through controlled elevation.</p>
+      <ul class="feature-list">
+        <li>
+          <strong><a href="https://www.manageengine.com/application-control/remove-admin-rights.html">Remove admin rights</a></strong>
+          <span>Eliminate standing local admin access to reduce attack surface.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/application-control/request-access.html">Passwordless, app-specific elevation</a></strong>
+          <span>Elevate only the app or task, without sharing admin passwords.</span>
+        </li>
+        <li>
+          <strong><a href="https://www.manageengine.com/application-control/just-in-time-access.html">Just-in-time elevation access</a></strong>
+          <span>Grant time-bound elevation and auto-revoke based on policy.</span>
+        </li>
+      </ul>
     </div>
   </div>
+</section>
 
-  <button class="carousel-btn next">&#10095;</button>
+<section class="carousel" aria-label="Product walkthrough" tabindex="0">
+  <div class="carousel-shell">
+    <button class="carousel-btn prev" aria-label="Previous slide">&#10094;</button>
+
+    <div class="carousel-viewport">
+      <div class="carousel-track">
+        <div class="carousel-item active" data-title="Shadow IT control">
+          <div class="carousel-caption">
+            <strong>Control Application installed through shadow IT</strong>
+            <p>Detect unauthorized applications and choose whether to allow or block them, all from a centralized dashboard.</p>
+          </div>
+          <video autoplay muted loop playsinline>
+            <source src="videos/unmanaged.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="carousel-item" data-title="Just-in-time access">
+          <div class="carousel-caption">
+            <strong>Enforce Just-in-Time Access</strong>
+            <p>Reduce security risks by granting temporary access only to trusted applications and approved vendors when needed.</p>
+          </div>
+          <video autoplay muted loop playsinline>
+            <source src="videos/jit.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="carousel-item" data-title="Run as elevation">
+          <div class="carousel-caption">
+            <strong>Empower Users with Temporary Privileges</strong>
+            <p>Allow users in custom groups to run specific applications with elevated privileges securely, without giving permanent admin rights.</p>
+          </div>
+          <img src="images/run-as-me.png" alt="run-as-manageengine">
+        </div>
+
+        <div class="carousel-item" data-title="Remove admin rights">
+          <div class="carousel-caption">
+            <strong>Identify and Remove Unnecessary Admin Rights</strong>
+            <p>Detect systems with local admin accounts and remove excess privileges</p>
+          </div>
+          <video autoplay muted loop playsinline>
+            <source src="videos/adminrights.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="carousel-nav" aria-label="Choose a slide"></div>
+    </div>
+
+    <button class="carousel-btn next" aria-label="Next slide">&#10095;</button>
+  </div>
 </section>
 
 <section class="outcomes">
@@ -1035,6 +904,7 @@
     </div>
   </div>
 </section>
+
 <section class="eval-soft">
   <div class="eval-wrap">
     <h2>Ready to evaluate safely?</h2>
@@ -1044,69 +914,64 @@
     </p>
 
     <div class="eval-layout">
-      <!-- Free -->
       <div class="eval-panel">
-  <div class="eval-inner-center left">
-    <h3>Free Edition</h3>
-    <span class="eval-price">$0</span>
-    <p class="eval-meta">Up to 25 devices</p>
+        <div class="eval-inner-center left">
+          <h3>Free Edition</h3>
+          <span class="eval-price">$0</span>
+          <p class="eval-meta">Up to 25 devices</p>
+          <a href="#" class="eval-cta subtle">Get started</a>
+        </div>
+      </div>
 
-    <a href="#" class="eval-cta subtle">Get started</a>
-  </div>
-</div>
+      <div class="eval-panel primary">
+        <h3>Professional Edition</h3>
+        <span class="eval-price">$10 <small>per device per year</small></span>
+        <p class="eval-meta">As the number of devices increases, the price per device decreases</p>
 
-
-      <!-- Trial -->
-      <!-- Professional Edition -->
-<div class="eval-panel primary">
-  <h3>Professional Edition</h3>
-  <span class="eval-price">
-  $10 <small>per device per year</small>
-</span>
-  <p class="eval-meta">As the number of devices increases, the price per device decreases</p>
-
-  <a href="https://www.manageengine.com/application-control/download.html" class="eval-cta strong">Start free trial</a>
-  <small style="display:block; margin-top:8px; color:#64748b; font-size:12px;">
-    For more pricing details, visit <a href="https://store.manageengine.com/application-control/" style="color:var(--blue); text-decoration:underline;">ManageEngine Store</a>
-  </small>
-</div>
+        <a href="https://www.manageengine.com/application-control/download.html" class="eval-cta strong">Start free trial</a>
+        <small style="display:block; margin-top:8px; color:#64748b; font-size:12px;">
+          For more pricing details, visit
+          <a href="https://store.manageengine.com/application-control/" style="color:var(--blue); text-decoration:underline;">ManageEngine Store</a>
+        </small>
+      </div>
     </div>
   </div>
-  <p style="text-align:center; font-size:12px; color:#64748b; margin-top:16px;">
-  For complete endpoint management and security, <a href="https://www.manageengine.com/products/desktop-central/" style="color:var(--blue); text-decoration:underline;">ManageEngineEndpoint Central</a> is the recommended solution.
-</p>
 
+  <p style="text-align:center; font-size:12px; color:#64748b; margin-top:16px;">
+    For complete endpoint management and security,
+    <a href="https://www.manageengine.com/products/desktop-central/" style="color:var(--blue); text-decoration:underline;">ManageEngine Endpoint Central</a>
+    is the recommended solution.
+  </p>
 </section>
+
 <section class="faq-section">
   <div class="container">
     <h2>Frequently Asked Questions</h2>
-    <p class="faq-subtext">
-      Answers to common evaluation questions
-    </p>
+    <p class="faq-subtext">Answers to common evaluation questions</p>
 
     <div class="faq-carousel">
       <button class="faq-nav prev">‹</button>
 
       <div class="faq-track">
-
         <div class="faq-item active">
           <h3>Can I get a demo of ManageEngine Application Control Plus?</h3>
           <p>
-            Yes, you can request a <a href="https://www.manageengine.com/application-control/request-demo.html">personalized demo</a> to see how application control and least privilege can be enforced in your environment.
+            Yes, you can request a
+            <a href="https://www.manageengine.com/application-control/request-demo.html">personalized demo</a>
+            to see how application control and least privilege can be enforced in your environment.
           </p>
         </div>
 
         <div class="faq-item">
           <h3>Does ManageEngine Application Control Plus have a free plan?</h3>
-          <p>
-            Yes. Application Control Plus offers a lifetime Free Edition that supports up to 25 devices.
-          </p>
+          <p>Yes. Application Control Plus offers a lifetime Free Edition that supports up to 25 devices.</p>
         </div>
 
         <div class="faq-item">
           <h3>Is support available for the Free Edition?</h3>
           <p>
-            Yes, ManageEngine Application Control Plus provides technical support for the Free Edition, in addition to access to product documentation and knowledge base resources, to help you deploy and manage policies effectively.
+            Yes, ManageEngine Application Control Plus provides technical support for the Free Edition,
+            in addition to access to product documentation and knowledge base resources.
           </p>
         </div>
 
@@ -1114,10 +979,11 @@
           <h3>Is Application Control Plus the right choice if I’m looking for software asset management?</h3>
           <p>
             Application Control Plus is purpose-built for application control and endpoint privilege management.
-If your requirement includes capabilities such as patch management, vulnerability assessment, device control, or broader endpoint administration, <a href="https://www.manageengine.com/products/desktop-central/">ManageEngine Endpoint Central</a> would be the more suitable choice, as it offers a comprehensive endpoint management platform.
+            If your requirement includes patching, vulnerability assessment, device control, or broader endpoint administration,
+            <a href="https://www.manageengine.com/products/desktop-central/">ManageEngine Endpoint Central</a>
+            would be the more suitable choice.
           </p>
         </div>
-
       </div>
 
       <button class="faq-nav next">›</button>
@@ -1125,77 +991,86 @@ If your requirement includes capabilities such as patch management, vulnerabilit
   </div>
 </section>
 
-
-
-
-
-
-
 <footer>
   © 2026 Application Control Plus. All rights reserved.
 </footer>
+
 <script>
-/* ================= GIF CAROUSEL (FAQ-style) ================= */
+  /* ================= PRETTY CAROUSEL with PREVIEWS (NO AUTOSCROLL) ================= */
+  const carouselEl = document.querySelector(".carousel");
+  const slides = carouselEl.querySelectorAll(".carousel-item");
+  const prevBtn = carouselEl.querySelector(".carousel-btn.prev");
+  const nextBtn = carouselEl.querySelector(".carousel-btn.next");
+  const nav = carouselEl.querySelector(".carousel-nav");
+  let currentIndex = 0;
 
-const carousel = document.querySelector('.carousel');
-const items = carousel.querySelectorAll('.carousel-item');
-const prevBtn = carousel.querySelector('.carousel-btn.prev');
-const nextBtn = carousel.querySelector('.carousel-btn.next');
+  function stopAllMedia() {
+    slides.forEach((s) => {
+      const v = s.querySelector("video");
+      if (v) v.pause();
+    });
+  }
 
-let currentIndex = 0;
+  function playActiveMedia() {
+    const active = slides[currentIndex];
+    const v = active.querySelector("video");
+    if (v) v.play().catch(() => {});
+  }
 
-function showSlide(index) {
-  items.forEach(item => item.classList.remove('active'));
-  items[index].classList.add('active');
-}
+  function setActive(index) {
+    currentIndex = (index + slides.length) % slides.length;
 
-prevBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + items.length) % items.length;
-  showSlide(currentIndex);
-});
+    slides.forEach((s) => s.classList.remove("active"));
+    slides[currentIndex].classList.add("active");
 
-nextBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % items.length;
-  showSlide(currentIndex);
-});
+    const dots = nav.querySelectorAll(".carousel-dot");
+    dots.forEach((d) => d.classList.remove("active"));
+    dots[currentIndex]?.classList.add("active");
 
-// Init
-showSlide(currentIndex);
+    stopAllMedia();
+    playActiveMedia();
+  }
 
-/* ================= FAQ CAROUSEL ================= */
+  function buildNav() {
+    nav.innerHTML = "";
+    slides.forEach((slide, i) => {
+      const label = slide.getAttribute("data-title") || `Slide ${i + 1}`;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "carousel-dot";
+      btn.innerHTML = `<span class="pill" aria-hidden="true"></span>${label}`;
+      btn.addEventListener("click", () => setActive(i));
+      nav.appendChild(btn);
+    });
+  }
 
-const faqItems = document.querySelectorAll('.faq-item');
-const faqPrev = document.querySelector('.faq-nav.prev');
-const faqNext = document.querySelector('.faq-nav.next');
+  prevBtn?.addEventListener("click", () => setActive(currentIndex - 1));
+  nextBtn?.addEventListener("click", () => setActive(currentIndex + 1));
 
-let faqIndex = 0;
+  carouselEl.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") setActive(currentIndex - 1);
+    if (e.key === "ArrowRight") setActive(currentIndex + 1);
+  });
 
-// Initialize
-faqItems[faqIndex].classList.add('active');
+  buildNav();
+  setActive(0);
 
-function showFaq(index) {
-  faqItems.forEach(item => item.classList.remove('active'));
-  faqItems[index].classList.add('active');
-}
+  /* ================= FAQ CAROUSEL ================= */
+  const faqItems = document.querySelectorAll(".faq-item");
+  const faqPrev = document.querySelector(".faq-nav.prev");
+  const faqNext = document.querySelector(".faq-nav.next");
+  let faqIndex = 0;
 
-faqNext.addEventListener('click', () => {
-  faqIndex = (faqIndex + 1) % faqItems.length;
-  showFaq(faqIndex);
-});
+  function showFaq(index) {
+    faqIndex = (index + faqItems.length) % faqItems.length;
+    faqItems.forEach((item) => item.classList.remove("active"));
+    faqItems[faqIndex].classList.add("active");
+  }
 
-faqPrev.addEventListener('click', () => {
-  faqIndex = (faqIndex - 1 + faqItems.length) % faqItems.length;
-  showFaq(faqIndex);
-});
+  faqNext.addEventListener("click", () => showFaq(faqIndex + 1));
+  faqPrev.addEventListener("click", () => showFaq(faqIndex - 1));
+  showFaq(0);
 </script>
 
-
-
-
 </body>
-
 </html>
-
-
-
-
