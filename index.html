@@ -466,8 +466,8 @@ nav a:hover{
   position: relative;                 /* IMPORTANT for ::before */
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 240px;           /* FIXED width = equal cards */
-  gap: 16px;
+  grid-auto-columns: 200px;           /* FIXED width = equal cards */
+  gap: 20px;
   overflow-x: auto;
   padding: 6px 6px 12px;
   scroll-snap-type: x mandatory;
@@ -502,8 +502,8 @@ nav a:hover{
 /* flip cards */
 .flow-as-flip .feature-card{
   display: block;                     /* ensures anchor behaves like a block card */
-  width: 240px;                       /* match grid-auto-columns */
-  height: 200px;
+  width: 200px;                       /* match grid-auto-columns */
+  height: 160px;
   scroll-snap-align: start;
   position: relative;
   border-radius: 18px;
@@ -533,7 +533,7 @@ nav a:hover{
 .flow-as-flip .feature-back{
   position:absolute;
   inset:0;
-  padding: 34px 28px;        /* more breathing room */
+  padding: 22px 18px;        /* more breathing room */
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -545,7 +545,7 @@ nav a:hover{
 
 .flow-as-flip .feature-front h3{
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--blue);
 }
@@ -558,9 +558,9 @@ nav a:hover{
 }
 .flow-as-flip .feature-back p{
   margin: 0;
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.55;
-  max-width: 32ch;     /* keeps it away from edges */
+  max-width: 26ch;     /* keeps it away from edges */
   color: #eaf2ff;
 }
 
@@ -584,15 +584,56 @@ nav a:hover{
   border-radius: 999px;
 }
 .flow-as-flip .features-grid::-webkit-scrollbar-track{ background: transparent; }
-@media (min-width: 1100px){
+/* ================= FLOW – FIX ODD SPACING (3 cards centered) ================= */
+
+/* Desktop/tablet: make it a true 3-column row (no stretch gaps) */
+@media (min-width: 900px){
   .flow-as-flip .features-grid{
-    grid-auto-columns: 1fr;
-    overflow-x: visible;
+    overflow: visible;
+    grid-auto-flow: unset;
+    grid-auto-columns: unset;
+
+    grid-template-columns: repeat(3, 220px); /* fixed card columns */
+    justify-content: center;                 /* center the whole row */
+    gap: 40px;                               /* clean spacing */
+    padding: 12px 0 0;
   }
+
   .flow-as-flip .feature-card{
-    width: auto;
+    width: 220px;
+    height: 160px;
+  }
+
+  .flow-as-flip .feature-front,
+  .flow-as-flip .feature-back{
+    padding: 22px 18px;
   }
 }
+
+/* Mobile: keep your horizontal scroll strip */
+@media (max-width: 899px){
+  .flow-as-flip .features-grid{
+    grid-auto-flow: column;
+    grid-auto-columns: 220px;
+    justify-content: start;
+    overflow-x: auto;
+    padding: 6px 6px 12px;
+    gap: 16px;
+  }
+
+  .flow-as-flip .feature-card{
+    width: 220px;
+    height: 160px;
+  }
+}
+
+/* Connector line: keep it subtle and aligned */
+.flow-as-flip .features-grid::before{
+  left: 10%;
+  right: 10%;
+  opacity: 0.55;
+}
+
 
 
 /* ---------- FEATURES ---------- */
@@ -1481,19 +1522,19 @@ footer{
 <section class="flow-as-flip" id="flow">
   <div class="features-container">
     <div class="features-intro">
-      <h2>From visibity to control</h2>
-      <p>Start in audit mode, assess real usage, and transition to controlled execution.</p>
+      <h2>From visibility to control</h2>
+      <p>Discover what runs, validate in audit mode, then apply policy-based control.</p>
     </div>
 
     <div class="flow-wrap">
-      <div class="features-grid" aria-label="Audit to enforce workflow">
+      <div class="features-grid" aria-label="Discover to enforce workflow">
 
         <a class="feature-card" href="#" aria-label="Discover">
           <div class="feature-front">
             <h3>Discover</h3>
           </div>
           <div class="feature-back">
-            <p>Identifies and inventories all applications running across endpoints.</p>
+            <p>Identifies applications running across endpoints.</p>
           </div>
         </a>
 
@@ -1502,16 +1543,7 @@ footer{
             <h3>Audit</h3>
           </div>
           <div class="feature-back">
-            <p>Runs in audit mode to monitor application activity and understand enforcement impact without interrupting users.</p>
-          </div>
-        </a>
-
-        <a class="feature-card" href="#" aria-label="Decide">
-          <div class="feature-front">
-            <h3>Decide</h3>
-          </div>
-          <div class="feature-back">
-            <p>Classify applications as allowed or blocked based on risk, usage and business relevance.</p>
+            <p>Monitors execution and policy impact without disrupting users.</p>
           </div>
         </a>
 
@@ -1520,25 +1552,7 @@ footer{
             <h3>Enforce</h3>
           </div>
           <div class="feature-back">
-            <p>Apply application control policies to allow only approved software to execute across endpoints.</p>
-          </div>
-        </a>
-
-        <a class="feature-card" href="#" aria-label="Elevate">
-          <div class="feature-front">
-            <h3>Elevate</h3>
-          </div>
-          <div class="feature-back">
-            <p>Grant just-in-time privilege elevation for approved applications or tasks without providing full admin rights.</p>
-          </div>
-        </a>
-
-        <a class="feature-card" href="#" aria-label="Monitor">
-          <div class="feature-front">
-            <h3>Monitor</h3>
-          </div>
-          <div class="feature-back">
-            <p>Continuously track application usage, policy violations, and privilege activity with detailed reports.</p>
+            <p>Allows only approved applications and blocks everything else by policy.</p>
           </div>
         </a>
 
@@ -1546,6 +1560,7 @@ footer{
     </div>
   </div>
 </section>
+
 
 
 <section class="carousel" aria-label="Product walkthrough" tabindex="0">
@@ -1567,7 +1582,7 @@ footer{
         <div class="carousel-item" data-title="Privilege Creep">
           <div class="carousel-caption">
             <strong>Just-in-time access control</strong>
-            <p>Grant temporary application execution and privilege elevation, and automatically revokes access based on policy.</p>
+            <p>Grant temporary application execution and privilege elevation, then automatically revokes access based on policy.</p>
           </div>
           <video muted loop playsinline preload="metadata">
             <source src="videos/jit.mp4" type="video/mp4">
@@ -1724,7 +1739,7 @@ footer{
 
             <ul class="pitch-list">
               <li>Vulnerability management</li>
-              <li>Patch management</li>
+              <li>Patch Management</li>
               <li>Enterprise data security</li>
               <li>Data leakage prevention</li>
               <li>Malware protection</li>
@@ -1883,5 +1898,3 @@ footer{
 
 </body>
 </html>
-
-
