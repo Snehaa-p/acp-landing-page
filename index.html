@@ -1371,6 +1371,68 @@ footer{
   font-size:14px;
   background:#fff;
 }
+/* outcomes CTA row */
+.outcomes-cta{
+  margin-top: 28px;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  padding: 18px 20px;
+  border-radius: 18px;
+
+  background: #f8fbff;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(10,102,194,0.12);
+  box-shadow: 0 16px 44px rgba(15,23,42,0.08);
+
+}
+.container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+
+.outcomes-cta p{
+  margin: 0;
+  font-size: 15px;
+  color: #475569;
+  max-width: 540px;
+}
+
+.outcomes-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-weight: 700;
+  color: #0a66c2; /* brand blue */
+  text-decoration: none;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(10,102,194,0.25);
+  background: rgba(10,102,194,0.08);
+  box-shadow: 0 10px 22px rgba(15,23,42,0.06);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.outcomes-link:hover{
+  transform: translateY(-2px);
+  border-color: rgba(10,102,194,0.45);
+  background: rgba(10,102,194,0.15);
+  box-shadow: 0 16px 30px rgba(15,23,42,0.10);
+}
+
+
+@media (max-width: 720px) {
+  .outcomes-cta { flex-direction: column; text-align: center; }
+}
+
   </style>
 </head>
 
@@ -1652,6 +1714,10 @@ footer{
         </ul>
       </div>
     </div>
+    <div class="outcomes-cta">
+  <p>Want to see how policies work in your environment?</p>
+  <a href="https://www.manageengine.com/application-control/request-demo.html" class="outcomes-link">Request a demo →</a>
+</div>
   </div>
 </section>
 <section class="pricing-compare" id="pricing">
