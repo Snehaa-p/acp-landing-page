@@ -923,7 +923,7 @@ nav a:hover{
 
 /* Keep CTA aligned with the same max-width as the grid */
 .outcomes-cta{
-  max-width:1100px;
+  max-width:750px;
   margin:24px auto 0;
 }
 
@@ -1493,7 +1493,151 @@ footer{
 @media (max-width: 720px) {
   .outcomes-cta { flex-direction: column; text-align: center; }
 }
+/* ======================= PRICING PILLS (SAME FEATURES) ======================= */
+.compare-card.pill-mode{
+  padding: 18px 18px 16px;
+}
 
+.plan-pills{
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin: 8px auto 16px;
+}
+
+.pills-shell{
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(15,23,42,0.08);
+  box-shadow: 0 10px 26px rgba(15,23,42,0.08);
+  backdrop-filter: blur(10px);
+}
+
+.pill-btn{
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, box-shadow .18s ease, border-color .18s ease, transform .18s ease;
+}
+
+.pill-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(37,99,235,0.25);
+  background: rgba(37,99,235,0.06);
+}
+
+.pill-btn[aria-selected="true"]{
+  color: #ffffff;
+  background: linear-gradient(135deg,#0f2a44,#1e4f91,#2563eb);
+  box-shadow: 0 16px 40px rgba(37,99,235,0.26);
+  border-color: rgba(255,255,255,0.16);
+}
+
+.pill-btn:focus-visible{
+  outline: 3px solid rgba(37,99,235,0.35);
+  outline-offset: 3px;
+}
+
+/* shared inner panel */
+.plan-panel{
+  position: relative;
+  z-index: 2;
+  padding: 10px 10px 6px;
+}
+
+.plan-panel .plan-col{
+  padding: 20px 22px 20px;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 18px;
+  box-shadow: 0 16px 38px rgba(15,23,42,0.08);
+}
+
+.plan-meta{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.plan-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #0f172a;
+  background: rgba(37,99,235,0.08);
+  border: 1px solid rgba(37,99,235,0.18);
+  white-space: nowrap;
+}
+
+.plan-detail{
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.plan-panel .plan-divider{
+  margin: 14px 0 16px;
+}
+
+.plan-cta-row{
+  margin-top: 18px;
+  display:flex;
+  justify-content:flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 820px){
+  .compare-card.pill-mode{ padding: 16px 14px 14px; }
+  .plan-panel{ padding: 8px 0 0; }
+  .plan-panel .plan-col{ padding: 18px 16px; }
+  .plan-cta-row{ justify-content: center; }
+}
+/* ================= CAROUSEL (PILLS ON TOP) ================= */
+
+/* Optional but recommended: makes nav + track align nicely */
+.carousel-viewport{
+  max-width:1240px;
+  margin:0 auto;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* pills/nav now above the content */
+.carousel-nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+
+  margin: 4px 0 22px; /* ✅ space below pills */
+  padding:0 10px;
+}
+
+.feature-footnote{
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: -0.01em;
+  color: #64748b;
+}
   </style>
 </head>
 
@@ -1537,44 +1681,98 @@ footer{
     <small>30-day free trial · No credit card required · Free forever up to 25 endpoints</small>
   </div>
 </section>
-
-<section class="trust-proof" aria-label="Global trust and credibility">
+<section class="outcomes">
   <div class="container">
-    <div class="trust-head">
-      <p class="trust-kicker">Trusted by leading brands worldwide</p>
+    <h2 class="outcomes-heading">Approve faster. Stay compliant.</h2>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <h3>
+          Autonomous approval
+          <span class="feature-chip">NEW</span>
+        </h3>
+        <ul>
+          <li>Approve trusted Just-In-Time elevation requests automatically using confidence scores</li>
+          <li>Low-risk actions proceed instantly without admin delays or approval queues</li>
+          <li>Privileges remain time-bound with no persistent elevation exposure</li>
+        </ul>
+        <div class="feature-footnote">
+  Available only in Endpoint Central with Application Control and Endpoint Privilege Management add-on
+</div>
+      </div>
+
+      <div class="outcome-card">
+        <h3>Audit-ready compliance and reporting</h3>
+        <ul>
+          <li>Maintain a complete audit trail of elevations, approvals, and revocations</li>
+          <li>Simplify compliance reviews with automatically recorded privilege activity</li>
+          <li>Ensure transparent governance across enforcement decisions</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="trust-logos" aria-label="Customer logos">
-      <div class="logo-tile"><img src="images/metropole-logo.png" alt="Metropole"></div>
-      <div class="logo-tile"><img src="images/meshed-groups-logo.png" alt="Meshed Groups"></div>
-      <div class="logo-tile"><img src="images/granicus-logo.png" alt="Granicus"></div>
-      <div class="logo-tile"><img src="images/clear-dynamics.png" alt="Clear Dynamics"></div>
-      <div class="logo-tile"><img src="images/boing-logo.png" alt="Boeing"></div>
-      <div class="logo-tile"><img src="images/memphis-logo.png" alt="Memphis"></div>
-    </div>
-
-    <div class="trust-spacer" aria-hidden="true"></div>
-
-    <div class="trust-metrics" aria-label="Key product metrics">
-      <div class="metric">
-        <strong>5M+</strong>
-        <span>endpoints secured</span>
-      </div>
-      <div class="metric">
-        <strong>6+ years</strong>
-        <span>in the industry</span>
-      </div>
-      <div class="metric">
-        <strong>100+</strong>
-        <span>countries served</span>
-      </div>
-      <div class="metric">
-        <strong>5000+</strong>
-        <span>organizations worldwide</span>
-      </div>
-    </div>
+    
   </div>
 </section>
+<!-- ================= CAROUSEL (PILLS ON TOP) ================= -->
+<section class="carousel" aria-label="Product walkthrough" tabindex="0">
+  <div class="carousel-shell">
+    <button class="carousel-btn prev" type="button" aria-label="Previous slide">&#10094;</button>
+
+    <div class="carousel-viewport">
+      <!-- ✅ PILLS / NAV ON TOP -->
+      <div class="carousel-nav" aria-label="Choose a slide"></div>
+
+      <div class="carousel-track">
+        <div class="carousel-item active" data-title="Shadow IT">
+          
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="videos/unmanaged.mp4" type="video/mp4">
+          </video>
+          <div class="carousel-caption">
+            <strong>Eliminate shadow IT risk</strong>
+            <p>Gain visibility into unapproved software and decide what runs in your environment.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item" data-title="Privilege Creep">
+          
+          <video muted loop playsinline preload="metadata">
+            <source src="videos/jit.mp4" type="video/mp4">
+          </video>
+          <div class="carousel-caption">
+            <strong>Just-in-time access control</strong>
+            <p>Grant temporary application execution and privilege elevation, then automatically revokes access based on policy.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item" data-title="Passwordless Elevation">
+          
+          <img src="images/run-as-me.png" alt="Run-as elevation workflow screenshot">
+          <div class="carousel-caption">
+            <strong>Passwordless application elevation</strong>
+            <p>Run approved applications with elevated privileges without exposing admin credentials.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item" data-title="Admin Sprawl">
+          
+          <video muted loop playsinline preload="metadata">
+            <source src="videos/adminrights.mp4" type="video/mp4">
+          </video>
+          <div class="carousel-caption">
+            <strong>Identify and remove unnecessary admin rights</strong>
+            <p>Detect systems with local admin accounts and remove excess privileges.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-btn next" type="button" aria-label="Next slide">&#10095;</button>
+  </div>
+</section>
+
+
 
 <section class="features">
   <h2 class="feature-heading">
@@ -1681,92 +1879,8 @@ footer{
 
       </div>
     </div>
-  </div>
-</section>
-
-
-
-<section class="carousel" aria-label="Product walkthrough" tabindex="0">
-  <div class="carousel-shell">
-    <button class="carousel-btn prev" type="button" aria-label="Previous slide">&#10094;</button>
-
-    <div class="carousel-viewport">
-      <div class="carousel-track">
-        <div class="carousel-item active" data-title="Shadow IT">
-          <div class="carousel-caption">
-            <strong>Eliminate shadow IT risk</strong>
-            <p>Gain visibility into unapproved software and decide what runs in your environment.</p>
-          </div>
-          <video autoplay muted loop playsinline preload="metadata">
-            <source src="videos/unmanaged.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="carousel-item" data-title="Privilege Creep">
-          <div class="carousel-caption">
-            <strong>Just-in-time access control</strong>
-            <p>Grant temporary application execution and privilege elevation, then automatically revokes access based on policy.</p>
-          </div>
-          <video muted loop playsinline preload="metadata">
-            <source src="videos/jit.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="carousel-item" data-title="Passwordless Elevation">
-          <div class="carousel-caption">
-            <strong>Passwordless application elevation</strong>
-            <p>Run approved applications with elevated privileges without exposing admin credentials.</p>
-          </div>
-          <img src="images/run-as-me.png" alt="Run-as elevation workflow screenshot">
-        </div>
-
-        <div class="carousel-item" data-title="Admin Sprawl">
-          <div class="carousel-caption">
-            <strong>Identify and remove unnecessary admin rights</strong>
-            <p>Detect systems with local admin accounts and remove excess privileges.</p>
-          </div>
-          <video muted loop playsinline preload="metadata">
-            <source src="videos/adminrights.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="carousel-nav" aria-label="Choose a slide"></div>
-    </div>
-
-    <button class="carousel-btn next" type="button" aria-label="Next slide">&#10095;</button>
-  </div>
-</section>
-
-<section class="outcomes">
-  <div class="container">
-    <h2 class="outcomes-heading">Approve faster. Stay compliant.</h2>
-
-    <div class="outcomes-grid">
-      <div class="outcome-card">
-        <h3>
-          Autonomous approval
-          <span class="feature-chip">NEW</span>
-        </h3>
-        <ul>
-          <li>Approve trusted Just-In-Time elevation requests automatically using confidence scores</li>
-          <li>Low-risk actions proceed instantly without admin delays or approval queues</li>
-          <li>Privileges remain time-bound with no persistent elevation exposure</li>
-        </ul>
-      </div>
-
-      <div class="outcome-card">
-        <h3>Audit-ready compliance and reporting</h3>
-        <ul>
-          <li>Maintain a complete audit trail of elevations, approvals, and revocations</li>
-          <li>Simplify compliance reviews with automatically recorded privilege activity</li>
-          <li>Ensure transparent governance across enforcement decisions</li>
-        </ul>
-      </div>
-    </div>
-
     <div class="outcomes-cta">
-      <p>Want to see how autonomous approvals work in your environment?</p>
+      <p>Want to see how policies work in your environment?</p>
       <a href="https://www.manageengine.com/application-control/request-demo.html" class="outcomes-link">
         Request a demo →
       </a>
@@ -1774,76 +1888,117 @@ footer{
   </div>
 </section>
 
+<section class="trust-proof" aria-label="Global trust and credibility">
+  <div class="container">
+    <div class="trust-head">
+      <p class="trust-kicker">Trusted by leading brands worldwide</p>
+    </div>
+
+    <div class="trust-logos" aria-label="Customer logos">
+      <div class="logo-tile"><img src="images/metropole-logo.png" alt="Metropole"></div>
+      <div class="logo-tile"><img src="images/meshed-groups-logo.png" alt="Meshed Groups"></div>
+      <div class="logo-tile"><img src="images/granicus-logo.png" alt="Granicus"></div>
+      <div class="logo-tile"><img src="images/clear-dynamics.png" alt="Clear Dynamics"></div>
+      <div class="logo-tile"><img src="images/boing-logo.png" alt="Boeing"></div>
+      <div class="logo-tile"><img src="images/memphis-logo.png" alt="Memphis"></div>
+    </div>
+
+    <div class="trust-spacer" aria-hidden="true"></div>
+
+    <div class="trust-metrics" aria-label="Key product metrics">
+      <div class="metric">
+        <strong>5M+</strong>
+        <span>endpoints secured</span>
+      </div>
+      <div class="metric">
+        <strong>6+ years</strong>
+        <span>in the industry</span>
+      </div>
+      <div class="metric">
+        <strong>100+</strong>
+        <span>countries served</span>
+      </div>
+      <div class="metric">
+        <strong>5000+</strong>
+        <span>organizations worldwide</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
 <section class="pricing-compare" id="pricing">
   <div class="pricing-wrap">
     <h2 class="pricing-title">Pick the right path to control</h2>
     <p class="pricing-sub">
-      Start free to validate policies. Upgrade when you are ready to roll out controls at scale.
+      Same capabilities in both editions. Choose based on endpoints and pricing.
     </p>
 
     <div class="pricing-grid">
-      <!-- LEFT: 2-up comparison card (Free + Professional) -->
-      <div class="compare-card" aria-label="Plans comparison">
-        <div class="compare-cols">
-          <!-- Free -->
-          <div class="plan-col">
-            <h3>Free Edition</h3>
+      <!-- LEFT: Pills pricing card -->
+      <div class="compare-card pill-mode" aria-label="Plans">
+        <!-- Pills -->
+        <div class="plan-pills" role="tablist" aria-label="Choose an edition">
+          <div class="pills-shell">
+            <button class="pill-btn" type="button"
+              role="tab" aria-selected="true"
+              aria-controls="plan-shared" id="pill-free"
+              data-plan="free">
+              Free Edition
+            </button>
 
-            <div class="plan-price">
-              <span class="plan-kicker">STARTS AT</span>
-              <div class="plan-amount-row">
-                <span class="amt">$0</span>
-                <span class="unit">up to 25 endpoints</span>
-              </div>
-            </div>
-
-            <div class="plan-divider" aria-hidden="true"></div>
-
-            <ul class="plan-list">
-              <li>Start in audit mode to understand real usage</li>
-              <li>Validate allowlist and blocklist policies</li>
-              <li>Reduce risk with controlled elevation workflows</li>
-              <li>Get visibility into policy violations and app activity</li>
-              <li>Perfect for small teams and pilot rollouts</li>
-            </ul>
-
-            <div class="plan-cta-row">
-              <a href="#" class="plan-btn outline">Get started</a>
-            </div>
+            <button class="pill-btn" type="button"
+              role="tab" aria-selected="false"
+              aria-controls="plan-shared" id="pill-pro"
+              data-plan="pro">
+              Professional Edition
+            </button>
           </div>
+        </div>
 
-          <!-- Professional -->
+        <!-- Single shared panel -->
+        <div class="plan-panel" id="plan-shared" role="tabpanel" aria-labelledby="pill-free">
           <div class="plan-col">
-            <h3>Professional Edition</h3>
+            <div class="plan-meta">
+              <div>
+                <h3 id="planTitle">Free Edition</h3>
+                <div class="plan-detail" id="planDetail">Free forever · Up to 25 endpoints</div>
+              </div>
 
-            <div class="plan-price">
+              <span class="plan-badge" id="planBadge">$0</span>
+            </div>
+
+            <div class="plan-price" style="margin-top:10px;">
               <span class="plan-kicker">STARTS AT</span>
               <div class="plan-amount-row">
-                <span class="amt">$10</span>
-                <span class="unit">/ endpoint per year</span>
+                <span class="amt" id="planAmt">$0</span>
+                <span class="unit" id="planUnit">up to 25 endpoints</span>
               </div>
             </div>
 
             <div class="plan-divider" aria-hidden="true"></div>
 
-            <ul class="plan-list">
-              <li>Deploy policies at scale across endpoints</li>
-              <li>Enforce application control with confidence</li>
-              <li>Just-in-time application access and elevation</li>
-              <li>Policy based approvals for admin tasks</li>
-              <li>Audit-ready reporting and activity trail</li>
+            <!-- ONE common feature list (shared) -->
+            <ul class="plan-list" aria-label="Included features">
+              <li>Application allowlisting and blocklisting</li>
+              <li>Audit mode visibility for apps and elevation</li>
+              <li>Policy-based control for execution and privilege</li>
+              <li>Elevation workflows without sharing admin credentials</li>
+              <li>Reporting and activity trail for governance</li>
             </ul>
 
             <div class="plan-cta-row">
-              <a href="https://www.manageengine.com/application-control/download.html" class="plan-btn solid">
-                Start free trial
-              </a>
+              <a href="#" class="plan-btn outline" id="planCta">Get started</a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT: Endpoint Central pitch (content structure copied from the screenshot) -->
+      <!-- RIGHT: Endpoint Central pitch -->
       <aside class="pitch-card" aria-label="Endpoint Central Cloud pitch">
         <div class="pitch-top">
           <p class="pitch-kicker">Want complete endpoint protection?</p>
@@ -1878,11 +2033,13 @@ footer{
     <p class="pricing-footnote">
       *As the number of endpoints increases, the price per endpoint decreases.<br/>
       For full pricing, visit
-  <a href="https://store.manageengine.com/application-control/" target="_blank" rel="noopener">
-    ManageEngine Store</a>
+      <a href="https://store.manageengine.com/application-control/" target="_blank" rel="noopener">
+        ManageEngine Store
+      </a>
     </p>
   </div>
-  
+</section>
+
 </section>
 
 
@@ -2014,6 +2171,71 @@ footer{
   faqNext.addEventListener("click", () => showFaq(faqIndex + 1));
   faqPrev.addEventListener("click", () => showFaq(faqIndex - 1));
   showFaq(0);
+  /* ================= PRICING PILLS (SAME FEATURES) ================= */
+const pricingPills = document.querySelectorAll(".pill-btn[data-plan]");
+const planShared = document.getElementById("plan-shared");
+
+const planTitle  = document.getElementById("planTitle");
+const planDetail = document.getElementById("planDetail");
+const planBadge  = document.getElementById("planBadge");
+const planAmt    = document.getElementById("planAmt");
+const planUnit   = document.getElementById("planUnit");
+const planCta    = document.getElementById("planCta");
+
+const plans = {
+  free: {
+    title: "Free Edition",
+    detail: "Free forever · Up to 25 endpoints",
+    badge: "$0",
+    amt: "$0",
+    unit: "up to 25 endpoints",
+    ctaText: "Get started",
+    ctaHref: "#"
+  },
+  pro: {
+    title: "Professional Edition",
+    detail: "Annual pricing · For 1000 endpoints",
+    badge: "$6195",
+    amt: "$6195",
+    unit: "per year",
+    ctaText: "Start free trial",
+    ctaHref: "https://www.manageengine.com/application-control/download.html"
+  }
+};
+
+function setPlan(planKey){
+  const p = plans[planKey];
+
+  // update pill states
+  pricingPills.forEach(btn => {
+    btn.setAttribute("aria-selected", String(btn.dataset.plan === planKey));
+  });
+
+  // update aria-labelledby to the active pill
+  const activePill = document.querySelector(`.pill-btn[data-plan="${planKey}"]`);
+  if (activePill) planShared.setAttribute("aria-labelledby", activePill.id);
+
+  // update content
+  planTitle.textContent = p.title;
+  planDetail.textContent = p.detail;
+  planBadge.textContent = p.badge;
+  planAmt.textContent = p.amt;
+  planUnit.textContent = p.unit;
+  planCta.textContent = p.ctaText;
+  planCta.href = p.ctaHref;
+
+  // swap CTA style to match your existing buttons
+  planCta.classList.remove("solid", "outline");
+  planCta.classList.add(planKey === "pro" ? "solid" : "outline");
+}
+
+pricingPills.forEach(btn => {
+  btn.addEventListener("click", () => setPlan(btn.dataset.plan));
+});
+
+// default
+setPlan("free");
+
 </script>
 
 </body>
